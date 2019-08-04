@@ -1,43 +1,63 @@
 import turtle
 import time
+turtle.setup(640,400)
 text = turtle.Turtle()
-turtle.shape("arrow")
+text.hideturtle()
+turtle.register_shape("pick.gif")
+turtle.register_shape("pick1.gif")
+turtle.register_shape("like.gif")
+turtle.bgpic("pick.gif")
+turtle.shape("like.gif")
 turtle.hideturtle()
 turtle.penup()
-turtle.goto(150,100)
-go = ["blue", "green", "red", "yellow", "orange"]
-quests = ["quest"]
+turtle.goto(200,50)
+global go
+go = ["pick.gif", "pick1.gif"]
+quests = ["quest","hi"]
 answer = ["true"]
-turtle.bgcolor("blue")
 global x
-x = 0
+x = -1
 global quest
-quest = "38"
+quest = "false"
 global y
 y = -1
-text.write(quests[0])
+global z
+z = -1
+text.goto(-30,-50)
+
+
 
 def background():
     global x
     global y
+    global z
+    print(quest)
+    
     if quest == "false":
         a=go[x+1]
-        turtle.bgcolor(a)
+        turtle.bgpic(a)
         x += 1
+        text.clear()
+        text.write(quests[z+1], move=False, align="left", font=("Arial",40,"normal"))
+        
+        z += 1
     if quest == "true":
         turtle.showturtle()
-        time.sleep(3)
+        time.sleep(2)
         turtle.hideturtle()
-        
+        text.clear()
+        text.write(quests[z+1], move=False, align="left", font=("Arial",40,"normal"))
+        z += 1
+background()
 def right():
     global y
     quest = "true"
     if quest == answer[y+1]:
         y += 1
-        background()
+        true()
     else:
         y += 1
-        background()
+        true()
 
 
 def left():
@@ -45,10 +65,10 @@ def left():
     quest = "false"
     if quest == answer[y+1]:
         y += 1
-        background()
+        false()
     else:
         y += 1
-        background()
+        false()
 
 def true():
     global quest
@@ -62,8 +82,8 @@ turtle.listen()
 
 def false():
     global quest
-    quest = "0"
+    quest = "false"
     background()
 
 
-turtle.done()
+turtle.mainloop()
