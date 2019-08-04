@@ -57,7 +57,7 @@ def right():
         true()
     else:
         y += 1
-        true()
+        false()
 
 
 def left():
@@ -65,7 +65,7 @@ def left():
     quest = "false"
     if quest == answer[y+1]:
         y += 1
-        false()
+        true()
     else:
         y += 1
         false()
