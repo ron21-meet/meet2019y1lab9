@@ -3,6 +3,7 @@ import time
 turtle.setup(640,400)
 text = turtle.Turtle()
 text.hideturtle()
+turtle.register_shape("boom.gif")
 turtle.register_shape("pick.gif")
 turtle.register_shape("pick1.gif")
 turtle.register_shape("like.gif")
@@ -12,9 +13,9 @@ turtle.hideturtle()
 turtle.penup()
 turtle.goto(200,50)
 global go
-go = ["pick.gif", "pick1.gif"]
-quests = ["quest","hi"]
-answer = ["true"]
+go = ["pick.gif", "pick1.gif", "boom.gif"]
+quests = ["quest","hi","boom"]
+answer = ["true","true","true"]
 global x
 x = -1
 global quest
@@ -31,6 +32,8 @@ def background():
     global x
     global y
     global z
+    global pic
+    pic = "0"
     print(quest)
     
     if quest == "false":
@@ -39,7 +42,6 @@ def background():
         x += 1
         text.clear()
         text.write(quests[z+1], move=False, align="left", font=("Arial",40,"normal"))
-        
         z += 1
     if quest == "true":
         turtle.showturtle()
@@ -48,6 +50,12 @@ def background():
         text.clear()
         text.write(quests[z+1], move=False, align="left", font=("Arial",40,"normal"))
         z += 1
+
+    pic = turtle.bgpic()
+    if pic == "boom.gif":
+        print("earth exploded")
+        quit()
+
 background()
 def right():
     global y
@@ -58,6 +66,7 @@ def right():
     else:
         y += 1
         false()
+
 
 
 def left():
