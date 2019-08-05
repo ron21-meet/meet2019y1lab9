@@ -13,6 +13,7 @@ turtle.register_shape("like.gif")
 turtle.register_shape("pick2.gif")
 turtle.register_shape("pick3.gif")
 turtle.register_shape("pick4.gif")
+turtle.register_shape("win.gif")
 turtle.bgpic("pick.gif")
 turtle.shape("like.gif")
 turtle.hideturtle()
@@ -22,7 +23,7 @@ sccore.hideturtle()
 turtle.goto(180,30)
 sccore.goto(170,50)
 text.penup()
-text.goto(-300,90)
+text.goto(-310,90)
 global go
 go = ["pick.gif", "pick1.gif", "pick2.gif",  "pick3.gif" ,  "pick4.gif"]
 quests = ["coal energy is a type of renewable energy?","LED lights are more energy efficient than incandescent light bulbs?",\
@@ -30,13 +31,13 @@ quests = ["coal energy is a type of renewable energy?","LED lights are more ener
           , "A quarter of all the world’s energy comes from renewable energy?", "Global warming is just a part of earth’s 'homeostasis'"\
           ,"Climate change leads to habitat loss for many animals?", "There are no countries that run on more than 95% renewable energy?"\
           ,"Climate change has lead to the destruction of most coral reefs?", "Glass bottles take thousands of years to decompose?"\
-          ,"Humans use 1 trillion plastic bags a year!?", "There is an island in the ocean made of trash with an area 600,000 square miles?"\
+          ,"Humans use 1 trillion plastic bags a year!?", "America produces 15% of the world’s carbon emissions?"\
           ,"Going on public transport is bad for the environment?", "Climate change is irreversible?", "Climate change will not be a problem until 2060?"
-          ,"The amount of waste produced daily in America would fill a football field to a height of 3000 feet?"\
-          , "You can’t do much to reduce the amount of trash you make?", "Deforestation contributes positively to Climate change?"\
-          ,"The Atlantic ocean is the biggest ocean?", "Americans recycle 50% of their paper waste products?"]
-answer = ["false","true","false","false", "true", "false", "true", "false", "true","true", "true", "true", "false", "false"\
-          , "false", "true", "false", "false", "false", "true"]
+          ,"Water is an element?"\
+          , "Americans recycle 50% of their paper waste products?", "Deforestation contributes positively to Climate change?"\
+          ,"The Atlantic ocean is the biggest ocean?", "You can’t do much to reduce the amount of trash you make?"]
+answer = ["false","true","false","false", "true", "false", "true", "false", "true","true", "true", "false", "false", "false"\
+          , "false", "false", "true", "false", "false", "false"]
 global x
 x = -1
 global quest
@@ -48,10 +49,10 @@ z = -1
 text.speed(0)
 texxt.speed(0)
 texxt.penup()
-text.color("white")
-texxt.color("white")
+text.color("steel blue")
+texxt.color("steel blue")
 texxt.goto(-300,150)
-texxt.write("Right button = True and Left button = False.", move = False, align = "left", font=("arial",15,"normal"))
+texxt.write("Left button = False and Right button = True.", move = False, align = "left", font=("arial",15,"normal"))
 
 score = 0
 
@@ -82,6 +83,13 @@ def background():
         text.clear()
         print("earth exploded")
         quit()
+    if score >= 16:
+        text.clear()
+        sccore.clear()
+        texxt.clear()
+        turtle.clear()
+        turtle.bgpic("win.gif")
+        
 
 background()
 def right():
