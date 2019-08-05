@@ -1,21 +1,42 @@
 import turtle
 import time
+
 turtle.setup(640,400)
 text = turtle.Turtle()
 text.hideturtle()
-turtle.register_shape("boom.gif")
+texxt = turtle.Turtle()
+sccore = turtle.Turtle()
+texxt.hideturtle()
 turtle.register_shape("pick.gif")
 turtle.register_shape("pick1.gif")
 turtle.register_shape("like.gif")
+turtle.register_shape("pick2.gif")
+turtle.register_shape("pick3.gif")
+turtle.register_shape("pick4.gif")
 turtle.bgpic("pick.gif")
 turtle.shape("like.gif")
 turtle.hideturtle()
 turtle.penup()
-turtle.goto(200,50)
+sccore.penup()
+sccore.hideturtle()
+turtle.goto(180,30)
+sccore.goto(170,50)
+text.penup()
+text.goto(-300,90)
 global go
-go = ["pick.gif", "pick1.gif", "boom.gif"]
-quests = ["quest","hi","boom"]
-answer = ["true","true","true"]
+go = ["pick.gif", "pick1.gif", "pick2.gif",  "pick3.gif" ,  "pick4.gif"]
+quests = ["coal energy is a type of renewable energy?","LED lights are more energy efficient than incandescent light bulbs?",\
+          "Combustion engines are more efficient than electric motors?", "Wind energy is the most reliable type of energy?"\
+          , "A quarter of all the world’s energy comes from renewable energy?", "Global warming is just a part of earth’s 'homeostasis'"\
+          ,"Climate change leads to habitat loss for many animals?", "There are no countries that run on more than 95% renewable energy?"\
+          ,"Climate change has lead to the destruction of most coral reefs?", "Glass bottles take thousands of years to decompose?"\
+          ,"Humans use 1 trillion plastic bags a year!?", "There is an island in the ocean made of trash with an area 600,000 square miles?"\
+          ,"Going on public transport is bad for the environment?", "Climate change is irreversible?", "Climate change will not be a problem until 2060?"
+          ,"The amount of waste produced daily in America would fill a football field to a height of 3000 feet?"\
+          , "You can’t do much to reduce the amount of trash you make?", "Deforestation contributes positively to Climate change?"\
+          ,"The Atlantic ocean is the biggest ocean?", "Americans recycle 50% of their paper waste products?"]
+answer = ["false","true","false","false", "true", "false", "true", "false", "true","true", "true", "true", "false", "false"\
+          , "false", "true", "false", "false", "false", "true"]
 global x
 x = -1
 global quest
@@ -24,9 +45,15 @@ global y
 y = -1
 global z
 z = -1
-text.goto(-30,-50)
+text.speed(0)
+texxt.speed(0)
+texxt.penup()
+text.color("white")
+texxt.color("white")
+texxt.goto(-300,150)
+texxt.write("Right button = True and Left button = False.", move = False, align = "left", font=("arial",15,"normal"))
 
-
+score = 0
 
 def background():
     global x
@@ -34,25 +61,25 @@ def background():
     global z
     global pic
     pic = "0"
-    print(quest)
     
     if quest == "false":
         a=go[x+1]
         turtle.bgpic(a)
         x += 1
         text.clear()
-        text.write(quests[z+1], move=False, align="left", font=("Arial",40,"normal"))
+        text.write(quests[z+1], move=False, align="left", font=("Arial",15,"normal"))
         z += 1
     if quest == "true":
         turtle.showturtle()
-        time.sleep(2)
+        time.sleep(1.5)
         turtle.hideturtle()
         text.clear()
-        text.write(quests[z+1], move=False, align="left", font=("Arial",40,"normal"))
+        text.write(quests[z+1], move=False, align="left", font=("Arial",15,"normal"))
         z += 1
 
     pic = turtle.bgpic()
-    if pic == "boom.gif":
+    if pic == "pick4.gif":
+        text.clear()
         print("earth exploded")
         quit()
 
@@ -81,7 +108,11 @@ def left():
 
 def true():
     global quest
+    global score
     quest = "true"
+    score += 1
+    sccore.clear()
+    sccore.write("SCORE: " + str(score), move = False, align = "left", font=("Arial", 20, "normal"))
     background()
 
 turtle.onkeypress(right,"Right")
