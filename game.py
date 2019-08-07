@@ -1,18 +1,29 @@
 import turtle
 import time
-
+from pygame import mixer
 turtle.setup(640,400)
+mixer.init()
+mixer.music.load("bob.mp3")
+mixer.music.play()
 text = turtle.Turtle()
+text_box = turtle.Turtle()
 text.hideturtle()
 texxt = turtle.Turtle()
 sccore = turtle.Turtle()
 texxt.hideturtle()
+turtle.register_shape("rec.gif")
+text_box.shape("rec.gif")
+text_box.penup()
+text_box.hideturtle()
+text_box.goto(0,190)
+text_box.showturtle()
 turtle.register_shape("pick.gif")
 turtle.register_shape("pick1.gif")
 turtle.register_shape("like.gif")
 turtle.register_shape("pick2.gif")
 turtle.register_shape("pick3.gif")
 turtle.register_shape("pick4.gif")
+turtle.register_shape("pick5.gif")
 turtle.register_shape("win.gif")
 turtle.bgpic("pick.gif")
 turtle.shape("like.gif")
@@ -23,9 +34,16 @@ sccore.hideturtle()
 turtle.goto(180,30)
 sccore.goto(170,50)
 text.penup()
-text.goto(-310,90)
+text.goto(-310,179)
+text.speed(0)
+texxt.speed(0)
+texxt.penup()
+text.color("sienna")
+texxt.color("gold")
+texxt.goto(-80,-179)
+texxt.write("Left button = False and Right button = True.", move = False, align = "left", font=("arial",15,"normal"))
 global go
-go = ["pick.gif", "pick1.gif", "pick2.gif",  "pick3.gif" ,  "pick4.gif"]
+go = ["pick.gif", "pick1.gif", "pick5.gif", "pick2.gif",  "pick3.gif" ,  "pick4.gif"]
 quests = ["coal energy is a type of renewable energy?","LED lights are more energy efficient than incandescent light bulbs?",\
           "Combustion engines are more efficient than electric motors?", "Wind energy is the most reliable type of energy?"\
           , "A quarter of all the world’s energy comes from renewable energy?", "Global warming is just a part of earth’s 'homeostasis'"\
@@ -46,13 +64,7 @@ global y
 y = -1
 global z
 z = -1
-text.speed(0)
-texxt.speed(0)
-texxt.penup()
-text.color("steel blue")
-texxt.color("steel blue")
-texxt.goto(-300,150)
-texxt.write("Left button = False and Right button = True.", move = False, align = "left", font=("arial",15,"normal"))
+
 
 score = 0
 
@@ -70,6 +82,16 @@ def background():
         text.clear()
         text.write(quests[z+1], move=False, align="left", font=("Arial",15,"normal"))
         z += 1
+        if z >= 1 and z < 6:
+            mixer.init()
+            mixer.music.load("oof.mp3")
+            mixer.music.play()
+            time.sleep(1)
+            mixer.init()
+            mixer.music.load("bob.mp3")
+            mixer.music.play()
+
+
     if quest == "true":
         turtle.showturtle()
         time.sleep(1.5)
@@ -80,13 +102,20 @@ def background():
 
     pic = turtle.bgpic()
     if pic == "pick4.gif":
+        mixer.init()
+        mixer.music.load("bomb.mp3")
+        mixer.music.play()
         text.clear()
         print("earth exploded")
         quit()
     if score >= 16:
+        mixer.init()
+        mixer.music.load("victory.mp3")
+        mixer.music.play()
         text.clear()
         sccore.clear()
         texxt.clear()
+        text_box.hideturtle()
         turtle.clear()
         turtle.bgpic("win.gif")
         
@@ -101,8 +130,6 @@ def right():
     else:
         y += 1
         false()
-
-
 
 def left():
     global y
